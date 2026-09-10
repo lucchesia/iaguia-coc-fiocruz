@@ -264,3 +264,16 @@
 @media (max-width: 600px) {
   .form-contribuicao iframe { min-height: 1700px; }
 }
+
+
+/* --------------------------------------------------------------------------
+   Citações
+
+   A linha de preenchimento do Termo (Anexo 8.1) é uma sequência de 89
+   sublinhados, indivisível para o navegador, e estoura a largura da coluna no
+   celular. break-word quebra só o que não cabe de jeito nenhum; break-all,
+   que quebraria palavra normal em qualquer letra, fica de fora de propósito.
+   -------------------------------------------------------------------------- */
+.md-typeset blockquote {
+  overflow-wrap: break-word;
+}

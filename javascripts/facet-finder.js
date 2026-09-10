@@ -56,12 +56,12 @@ function layout() {
 
         <fieldset class="facet-finder__group">
           <legend>Custo <span class="facet-finder__hint">(só ferramentas)</span></legend>
-          <div class="facet-finder__options" data-options="costs"></div>
+          <div class="facet-finder__options" data-options="access"></div>
         </fieldset>
 
         <fieldset class="facet-finder__group">
-          <legend>Licença <span class="facet-finder__hint">(só ferramentas)</span></legend>
-          <div class="facet-finder__options" data-options="licenses"></div>
+          <legend>Abertura <span class="facet-finder__hint">(só ferramentas)</span></legend>
+          <div class="facet-finder__options" data-options="openness"></div>
         </fieldset>
 
         <button type="button" class="facet-finder__reset md-button">Limpar filtros</button>
@@ -75,8 +75,10 @@ function layout() {
 function populateOptions(entries) {
   fillGroup("categories", uniqueSorted(entries.map((e) => e.category)));
   fillGroup("tags", uniqueSorted(entries.flatMap((e) => e.tags || [])));
-  fillGroup("costs", uniqueSorted(entries.map((e) => e.cost)));
-  fillGroup("licenses", uniqueSorted(entries.map((e) => e.license)));
+  // uniqueSorted descarta valor ausente, então os conceitos, que não têm nenhum dos
+  // dois campos, não geram opção "sem valor" e saem do resultado quando o filtro é usado.
+  fillGroup("access", uniqueSorted(entries.map((e) => e.access_model)));
+  fillGroup("openness", uniqueSorted(entries.map((e) => e.source_model)));
 }
 
 function fillGroup(name, values) {
@@ -100,15 +102,15 @@ function renderResults(entries) {
   const types = checkedValues('[data-group="types"] input');
   const categories = checkedValues('[data-options="categories"] input');
   const tags = checkedValues('[data-options="tags"] input');
-  const costs = checkedValues('[data-options="costs"] input');
-  const licenses = checkedValues('[data-options="licenses"] input');
+  const access = checkedValues('[data-options="access"] input');
+  const openness = checkedValues('[data-options="openness"] input');
 
   const filtered = entries.filter((e) => {
     if (types.length && !types.includes(e.entry_type)) return false;
     if (categories.length && !categories.includes(e.category)) return false;
     if (tags.length && !(e.tags || []).some((t) => tags.includes(t))) return false;
-    if (costs.length && !costs.includes(e.cost)) return false;
-    if (licenses.length && !licenses.includes(e.license)) return false;
+    if (access.length && !access.includes(e.access_model)) return false;
+    if (openness.length && !openness.includes(e.source_model)) return false;
     return true;
   });
 
