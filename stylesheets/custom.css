@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Identidade visual COC/Fiocruz — paleta fornecida pela designer.
+
+   Cores oficiais usadas na capa: branco, amarelo, azul, vinho e vermelho.
+   O restante da folha deriva das variáveis deste bloco.
+   ========================================================================== */
+
+/* O seletor precisa incluir [data-md-color-primary]: o Material põe esse
+   atributo no <body>, e como custom property herda do ancestral mais próximo,
+   um bloco só em :root (<html>) perde para o vermelho padrão do tema. */
+:root,
+[data-md-color-primary] {
+  --md-primary-fg-color:        #bf3133;
+  --md-primary-fg-color--light: #bf3133;
+  --md-primary-fg-color--dark:  #810915;
+  --md-accent-fg-color:         #bf3133;
+  --md-typeset-a-color:         #810915;
+
+  /* Acentos da capa do guia */
+  --coc-branco:  #ffffff;
+  --coc-amarelo: #edcc64;   /* destaque do título, como em "Inteligência Artificial" */
+  --coc-azul:    #8bd7f6;   /* rótulos, como na linha de autoria */
+
+  /* Intensidade da textura de circuito sobre cada fundo */
+  --coc-textura-header: 0.09;
+  --coc-textura-rodape: 0.18;
+}
+
+/* No modo escuro, o vermelho escuro dos links não tem contraste suficiente
+   sobre o fundo — usar o tom claro da paleta. */
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color:         #edcc64;
+
+  /* Sobre fundo escuro a textura precisa de menos peso para não virar sujeira */
+  --coc-textura-header: 0.07;
+  --coc-textura-rodape: 0.14;
+}
+
+
+/* --------------------------------------------------------------------------
+   Textura de circuito
+
+   docs/assets/circuito.svg é um ladrilho de 240 px que fecha nas quatro bordas,
+   redesenhado a partir da capa do guia (gerador: scripts/gera_textura_circuito.py).
+   Entra como máscara: o desenho define só o recorte e a cor vem do CSS, então a
+   mesma textura serve o vermelho do cabeçalho e o vinho do rodapé.
+
+   Com navigation.tabs.sticky as abas passam a ser filhas do <header>, então um
+   único ::before no cabeçalho cobre a barra superior e as abas de uma vez — o
+   ladrilho corre contínuo pelos ~96 px sem emenda para corrigir.
+   -------------------------------------------------------------------------- */
+
+.md-header::before,
+.coc-rodape::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Sem suporte a máscara o ::before viraria um véu escuro cobrindo a faixa
+   inteira, então a textura só é pintada quando o recurso existe. */
+@supports ((mask-image: url("../assets/circuito.svg")) or
+           (-webkit-mask-image: url("../assets/circuito.svg"))) {
+  .md-header::before,
+  .coc-rodape::before {
+    background-color: #000;
+    -webkit-mask: url("../assets/circuito.svg") 0 0 / 240px 240px repeat;
+            mask: url("../assets/circuito.svg") 0 0 / 240px 240px repeat;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   Cabeçalho fixo — logo, título do glossário, busca e abas
+
+   `.md-header` já é sticky com z-index próprio, então o ::before em z-index:-1
+   fica acima do vermelho de fundo e atrás de todo o conteúdo da barra, sem
+   precisar reposicionar nenhum filho do tema.
+   -------------------------------------------------------------------------- */
+
+.md-header::before {
+  z-index: -1;
+  opacity: var(--coc-textura-header);
+}
+
+/* Dentro do cabeçalho fixo as abas trazem o mesmo vermelho como fundo próprio,
+   opaco, que apagaria a textura justamente nessa faixa. Deixando transparente,
+   a máscara do cabeçalho aparece por baixo e corre inteira. */
+.md-header .md-tabs {
+  background-color: transparent;
+}
+
+/* Título do glossário no cabeçalho (overrides/partials/header.html). Em 1rem
+   negrito — 20 px na escala padrão do tema — cabe na barra de 2,4rem e mantém o
+   amarelo acima de 18,66 px, o limite a partir do qual a AA aceita 3:1 para
+   texto grande. */
+.coc-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--coc-branco);
+}
+
+/* "IA e Ferramentas Digitais" em amarelo, como na capa do guia: 4,0:1 sobre o
+   vermelho. A sombra segura a leitura onde um traço claro da textura passa por
+   trás da letra. */
+.coc-titulo em {
+  font-style: normal;
+  color: var(--coc-amarelo);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* As abas do tema vêm em opacidade 0.7, o que sobre o vermelho fica em ~3,6:1 —
+   abaixo do mínimo para texto normal. Em 0.85 passa de 4,5:1. */
+.md-tabs__link {
+  opacity: 0.85;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:hover,
+.md-tabs__link:focus-visible {
+  opacity: 1;
+}
+
+.md-tabs__link:focus-visible,
+.md-header__button:focus-visible {
+  outline: 2px solid var(--coc-branco);
+  outline-offset: 2px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Rodapé — em todas as páginas, acima do rodapé nativo do tema
+   -------------------------------------------------------------------------- */
+
+.coc-rodape {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--md-primary-fg-color--dark);
+  color: var(--coc-branco);
+}
+
+.coc-rodape::before { opacity: var(--coc-textura-rodape); }
+
+.coc-rodape__conteudo {
+  position: relative;
+  z-index: 1;
+  padding: 2.2rem 1.2rem 1.6rem;
+}
+
+.coc-rodape__colunas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 3.4rem;
+}
+
+.coc-rodape__colunas h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--coc-azul);
+}
+
+.coc-rodape__colunas a {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 2;
+  color: var(--coc-branco);
+  text-decoration: none;
+  opacity: 0.87;
+}
+
+.coc-rodape__colunas a:hover,
+.coc-rodape__colunas a:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Base do rodapé: créditos de autoria e licença. O texto
+   fica em branco a 82% (≈6:1 sobre o vinho) e os links em branco cheio, para
+   se destacarem da prosa em volta sem precisar de outra cor. */
+.coc-rodape__base {
+  margin: 1.6rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 0.64rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.coc-rodape__base p {
+  margin: 0 0 0.35rem;
+}
+
+.coc-rodape__base p:last-child {
+  margin-bottom: 0;
+}
+
+.coc-rodape__base a {
+  color: var(--coc-branco);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.coc-rodape__base a:hover,
+.coc-rodape__base a:focus-visible {
+  color: var(--coc-amarelo);
+}
+
+.coc-rodape__base a:focus-visible {
+  outline: 2px solid var(--coc-branco);
+  outline-offset: 2px;
+}
+
+/* O rodapé nativo do tema (anterior/próxima e créditos) vem logo abaixo da
+   faixa. Em cinza padrão ele cria um degrau; escurecendo o vinho em dois
+   passos, a base da página desce como um bloco só. */
+:root,
+[data-md-color-primary] {
+  --md-footer-bg-color:       #810915;
+  --md-footer-bg-color--dark: #810915;
+}
+
+
+/* --------------------------------------------------------------------------
+   Telas estreitas
+   -------------------------------------------------------------------------- */
+
+/* Abaixo deste ponto o tema esconde as abas e a navegação passa para o menu
+   lateral; o cabeçalho fica só com uma linha, e o título divide o espaço com o
+   botão de menu, a busca e o seletor de tema. Em 0,95rem (19 px) sobra mais
+   texto antes das reticências, sem descer dos 18,66 px que o amarelo precisa. */
+@media screen and (max-width: 76.234375em) {
+  .coc-titulo { font-size: 0.95rem; }
+}
+
+@media screen and (max-width: 44.9375em) {
+  .coc-rodape__conteudo { padding: 1.8rem 0.8rem 1.4rem; }
+  .coc-rodape__colunas  { gap: 1rem 2rem; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Formulário de contribuição (docs/contribuir.md)
+
+   O iframe do Google Forms vem com altura fixa em pixels no atributo HTML; a
+   altura mínima aqui garante que o formulário inteiro apareça sem barra de
+   rolagem interna, e a largura de 100% o mantém dentro da coluna de texto.
+   -------------------------------------------------------------------------- */
+.form-contribuicao {
+  margin: 1.5rem 0;
+}
+
+.form-contribuicao iframe {
+  width: 100%;
+  min-height: 1421px;
+}
+
+/* Em telas estreitas os campos do formulário quebram em mais linhas e o
+   conteúdo fica mais alto. */
+@media (max-width: 600px) {
+  .form-contribuicao iframe { min-height: 1700px; }
+}
