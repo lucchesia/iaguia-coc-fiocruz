@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+<!--
+  Identidade visual COC/Fiocruz.
+
+  O título do glossário e a navegação vivem no cabeçalho fixo — ver
+  overrides/partials/header.html e a feature navigation.tabs.sticky no
+  mkdocs.yml. Aqui ficam só o rodapé institucional e o VLibras.
+
+  A textura de circuito é aplicada por CSS (docs/stylesheets/custom.css), como
+  mask-image sobre docs/assets/circuito.svg.
+-->
+
+{% block footer %}
+  <section class="coc-rodape">
+    <div class="coc-rodape__conteudo md-grid">
+      <nav class="coc-rodape__colunas" aria-label="Rodapé">
+        <div>
+          <h2>Glossário</h2>
+          <a href="{{ 'ferramentas/' | url }}">Ferramentas</a>
+          <a href="{{ 'conceitos/' | url }}">Conceitos e termos</a>
+          <a href="{{ 'encontrar/' | url }}">Busca por filtros</a>
+          <a href="{{ 'tags/' | url }}">Índice de tags</a>
+        </div>
+        <div>
+          <h2>Guia de boas práticas</h2>
+          <a href="{{ 'guia/' | url }}">Visão geral</a>
+          <a href="{{ 'guia/integridade-academica/' | url }}">Integridade acadêmica</a>
+          <a href="{{ 'guia/diretrizes-por-publico/' | url }}">Diretrizes por público</a>
+          <a href="{{ 'guia/perguntas-frequentes/' | url }}">Perguntas frequentes</a>
+        </div>
+        <div>
+          <h2>Institucional</h2>
+          <a href="https://portal.fiocruz.br/casa-de-oswaldo-cruz" rel="noopener">Casa de Oswaldo Cruz</a>
+          <a href="https://portal.fiocruz.br" rel="noopener">Fiocruz</a>
+        </div>
+      </nav>
+      <div class="coc-rodape__base">
+        <p>
+          Casa de Oswaldo Cruz / Fiocruz · Anita Lucchesi e Daiane Silveira Rossi · Material de
+          apoio ao curso Letramento Acadêmico em Inteligência Artificial · 2026
+        </p>
+        <p>Capa: Silmara Mansur (Ascom/COC/Fiocruz)</p>
+        <p>
+          Conteúdo sob
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" rel="license noopener">CC BY-NC-SA 4.0</a>
+          ·
+          <a href="https://fiocruz.br/sites/fiocruz.br/files/documentos/portaria_-_politica_de_acesso_aberto_ao_conhecimento_na_fiocruz.pdf" rel="noopener">Política de Acesso Aberto ao Conhecimento na Fiocruz</a>
+          ·
+          <a href="{{ 'licenca/' | url }}">Licença</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  {{ super() }}
+{% endblock %}
+
+{#-
+  VLibras (gov.br) — tradutor de Libras, como no portal da Fiocruz. Entra no
+  bloco `scripts` para carregar em todas as páginas, depois dos scripts do tema.
+
+  O plugin (v7.8.0) injeta o próprio botão flutuante dentro de um shadow DOM,
+  fixo na borda direita e centrado na vertical (top: calc(50vh - 20px)). O botão
+  "voltar ao topo" do Material é uma pílula fixa no topo ao centro, e o rodapé
+  fica abaixo da metade da tela — não há sobreposição, então nenhum ajuste de
+  posição é necessário aqui. Se o VLibras mudar isso numa versão futura, o ponto
+  de correção é o CSS do shadow host (#vlibras-access-wrapper).
+
+  Se um dia o site ganhar Content-Security-Policy: o loader em vlibras.gov.br
+  redireciona para cdn.jsdelivr.net, então script-src precisa dos dois domínios,
+  e img-src, connect-src e media-src precisam de https://vlibras.gov.br, de onde
+  vêm os avatares e as animações.
+-#}
+{% block scripts %}
+  {{ super() }}
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+{% endblock %}

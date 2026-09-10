@@ -1,0 +1,104 @@
+.facet-finder {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .facet-finder {
+    grid-template-columns: 1fr;
+  }
+}
+
+.facet-finder__group {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.75rem 0.75rem;
+}
+
+.facet-finder__group legend {
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0.25rem;
+}
+
+.facet-finder__hint {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--md-default-fg-color--light);
+}
+
+.facet-finder__group label {
+  display: block;
+  font-size: 0.75rem;
+  padding: 0.15rem 0;
+  cursor: pointer;
+}
+
+.facet-finder__options--scroll {
+  max-height: 10rem;
+  overflow-y: auto;
+}
+
+.facet-finder__reset {
+  width: 100%;
+  cursor: pointer;
+}
+
+.facet-finder__count {
+  font-size: 0.75rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.facet-finder__empty {
+  font-style: italic;
+  color: var(--md-default-fg-color--light);
+}
+
+.facet-finder__cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+}
+
+.facet-finder__card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  padding: 0.75rem;
+}
+
+.facet-finder__badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.15rem;
+  margin-bottom: 0.35rem;
+  color: var(--md-primary-bg-color);
+  background: var(--md-primary-fg-color);
+}
+
+.facet-finder__badge--conceito {
+  background: var(--md-accent-fg-color);
+}
+
+.facet-finder__meta {
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.15rem;
+}
+
+.facet-finder__excerpt {
+  font-size: 0.8rem;
+  margin: 0.4rem 0 0;
+}

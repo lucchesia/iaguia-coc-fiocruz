@@ -1,0 +1,47 @@
+# Publicar é ato deliberado. Este workflow NÃO roda sozinho: não há gatilho de push nem de
+# pull request, só `workflow_dispatch` — ele publica quando, e apenas quando, alguém o
+# dispara à mão (aba Actions do repositório, ou `gh workflow run publicar.yml`).
+#
+# Ele repete as verificações do ci.yml antes de publicar, para que um disparo manual nunca
+# publique um site que não passa no build estrito nem no validador de frontmatter.
+#
+# `mkdocs gh-deploy --force` empurra o site construído para a branch gh-pages. Enquanto o
+# GitHub Pages não estiver ativado nas configurações do repositório, isso atualiza a branch
+# sem servir nada publicamente. Ativar o Pages é decisão humana, separada deste workflow.
+
+name: Publicar no GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Build do site (--strict)
+        run: mkdocs build --strict
+
+      - name: Validar frontmatter dos verbetes
+        run: python scripts/check_frontmatter.py
+
+      - name: Configurar git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Publicar na branch gh-pages
+        run: mkdocs gh-deploy --force

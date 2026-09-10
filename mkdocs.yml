@@ -1,0 +1,259 @@
+site_name: Glossário de IA e Ferramentas Digitais
+site_url: https://lucchesia.github.io/iaguia-coc-fiocruz/
+site_description: Referência navegável de ferramentas digitais e de conceitos de inteligência artificial para a pesquisa e a educação na Casa de Oswaldo Cruz/Fiocruz
+site_author: Casa de Oswaldo Cruz / Fiocruz
+repo_url: https://github.com/lucchesia/iaguia-coc-fiocruz
+# Sem esta linha o MkDocs deriva "edit/master/docs/" a partir do repo_url, e o branch padrão
+# daqui é main. O botão de editar página não está ligado (content.action.edit está fora de
+# theme.features), então nada disso aparece hoje — a declaração fecha a armadilha para depois.
+edit_uri: edit/main/docs/
+docs_dir: docs
+copyright: © 2026 Casa de Oswaldo Cruz / Fiocruz · Conteúdo em CC BY-NC-SA 4.0
+
+# Guardas contra artefatos do Word que por acaso caiam em docs/. As entradas que
+# nomeavam os templates de verbete e as seções descontinuadas do guia saíram junto
+# com os arquivos.
+exclude_docs: |
+  *.docx
+  ~$*
+
+# Páginas que existem no site mas não aparecem no menu do topo, cada uma alcançada por
+# outro caminho — declaradas aqui para o build --strict não acusar página fora do nav.
+# licenca.md: alcançada pelos links do rodapé.
+# encontrar.md: alcançada pelo botão da home e pelas chamadas nos índices das duas coleções.
+# tags.md: alcançada pelas etiquetas de cada verbete e pela seção "Como navegar" da home.
+not_in_nav: |
+  licenca.md
+  encontrar.md
+  tags.md
+
+hooks:
+  - scripts/generate_facets.py
+
+extra_css:
+  - stylesheets/facet-finder.css
+  - stylesheets/custom.css
+
+extra_javascript:
+  - path: javascripts/facet-finder.js
+    type: module
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: pt
+  palette:
+    - scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para modo escuro
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para modo claro
+  features:
+    - navigation.tabs
+    # Com .sticky as abas entram dentro do <header>, que já é fixo: navegação e
+    # título do glossário ficam visíveis o tempo todo, inclusive rolando.
+    - navigation.tabs.sticky
+    - navigation.top
+    # navigation.footer fora de propósito: o rodapé institucional (overrides/main.html)
+    # já fecha a página, e a navegação anterior/próxima duplicava o menu do topo.
+    - search.highlight
+    - search.suggest
+    - content.tooltips
+  font:
+    text: Fira Sans
+    code: Roboto Mono
+
+plugins:
+  - search:
+      lang: pt
+  - tags
+
+markdown_extensions:
+  - admonition
+  # O Guia traz onze notas de rodapé vindas do docx; sem esta extensão os
+  # marcadores [^1] apareceriam como texto literal na página.
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Início: index.md
+  - Ferramentas:
+    - Visão geral: ferramentas/index.md
+    - AntConc: ferramentas/antconc.md
+    - Archivematica: ferramentas/archivematica.md
+    - ArchiveWeb.page: ferramentas/archivewebpage.md
+    - Arkindex: ferramentas/arkindex.md
+    - AtoM: ferramentas/atom.md
+    - Audacity: ferramentas/audacity.md
+    - Buzz: ferramentas/buzz.md
+    - ChatGPT: ferramentas/chatgpt.md
+    - Claude: ferramentas/claude.md
+    - Connected Papers: ferramentas/connected-papers.md
+    - Consensus: ferramentas/consensus.md
+    - Cytoscape: ferramentas/cytoscape.md
+    - Datawrapper: ferramentas/datawrapper.md
+    - DeepL: ferramentas/deepl.md
+    - ELAN: ferramentas/elan.md
+    - Elicit: ferramentas/elicit.md
+    - EndNote: ferramentas/endnote.md
+    - eScriptorium: ferramentas/escriptorium.md
+    - Gamera: ferramentas/gamera.md
+    - Gemini: ferramentas/gemini.md
+    - Gemini Notebook: ferramentas/gemini-notebook.md
+    - Gephi: ferramentas/gephi.md
+    - Google Colab: ferramentas/google-colab.md
+    - JabRef: ferramentas/jabref.md
+    - Jupyter: ferramentas/jupyter.md
+    - Kdenlive: ferramentas/kdenlive.md
+    - Kepler.gl: ferramentas/kepler-gl.md
+    - Lameta: ferramentas/lameta.md
+    - LeapSpace: ferramentas/leapspace.md
+    - LibreTranslate: ferramentas/libretranslate.md
+    - Litmaps: ferramentas/litmaps.md
+    - LM Studio: ferramentas/lm-studio.md
+    - MacWhisper: ferramentas/macwhisper.md
+    - Mendeley: ferramentas/mendeley.md
+    - Mistral Vibe: ferramentas/mistral-vibe.md
+    - Mukurtu: ferramentas/mukurtu.md
+    - OBS Studio: ferramentas/obs-studio.md
+    - OCRmyPDF: ferramentas/ocrmypdf.md
+    - Ollama: ferramentas/ollama.md
+    - Omeka.net: ferramentas/omeka-net.md
+    - Omeka S: ferramentas/omeka-s.md
+    - OpenAlex: ferramentas/openalex.md
+    - OpenRefine: ferramentas/openrefine.md
+    - Orange Data Mining: ferramentas/orange-data-mining.md
+    - oTranscribe: ferramentas/otranscribe.md
+    - Oxóssi: ferramentas/oxossi.md
+    - Palladio: ferramentas/palladio.md
+    - Paperpile: ferramentas/paperpile.md
+    - PRISMS: ferramentas/prisms.md
+    - QGIS: ferramentas/qgis.md
+    - QualCoder: ferramentas/qualcoder.md
+    - RAWGraphs: ferramentas/rawgraphs.md
+    - ReplayWeb.page: ferramentas/replaywebpage.md
+    - ResearchRabbit: ferramentas/researchrabbit.md
+    - SayMore: ferramentas/saymore.md
+    - Scite: ferramentas/scite.md
+    - Semantic Scholar: ferramentas/semantic-scholar.md
+    - spaCy: ferramentas/spacy.md
+    - Taguette: ferramentas/taguette.md
+    - Tainacan: ferramentas/tainacan.md
+    - Tesseract: ferramentas/tesseract.md
+    - TextLab: ferramentas/textlab.md
+    - Transcritor-IA: ferramentas/transcritor-ia.md
+    - Transkribus: ferramentas/transkribus.md
+    - Transcribo: ferramentas/transcribo.md
+    - Tropy: ferramentas/tropy.md
+    - TUSTEP: ferramentas/tustep.md
+    - VOSviewer: ferramentas/vosviewer.md
+    - Voyant Tools: ferramentas/voyant-tools.md
+    - Whisper: ferramentas/whisper.md
+    - WordPress: ferramentas/wordpress.md
+    - Zotero: ferramentas/zotero.md
+  - Conceitos e termos:
+    - Visão geral: conceitos/index.md
+    - Agente de IA: conceitos/agente-de-ia.md
+    - Ajuste Fino: conceitos/ajuste-fino.md
+    - Algoritmo: conceitos/algoritmo.md
+    - Alucinação: conceitos/alucinacao.md
+    - Anonimização: conceitos/anonimizacao.md
+    - API: conceitos/api.md
+    - Aprendizado de Máquina: conceitos/aprendizado-de-maquina.md
+    - Aprendizado Profundo: conceitos/aprendizado-profundo.md
+    - Automação: conceitos/automacao.md
+    - Busca Semântica: conceitos/busca-semantica.md
+    - CMS: conceitos/cms.md
+    - Código Aberto: conceitos/codigo-aberto.md
+    - Conteúdo Sintético: conceitos/conteudo-sintetico.md
+    - Dados: conceitos/dados.md
+    - Dados Abertos Vinculados: conceitos/linked-open-data.md
+    - Dados de Treinamento: conceitos/dados-de-treinamento.md
+    - Dados Sintéticos: conceitos/dados-sinteticos.md
+    - Dados Vinculados: conceitos/dados-vinculados.md
+    - Deepfake: conceitos/deepfake.md
+    - Dublin Core: conceitos/dublin-core.md
+    - Embedding: conceitos/embedding.md
+    - Engenharia de Prompt: conceitos/engenharia-de-prompt.md
+    - Explicabilidade: conceitos/explicabilidade.md
+    - Few-shot: conceitos/few-shot.md
+    - Fundamentação: conceitos/fundamentacao.md
+    - IA Agêntica: conceitos/ia-agentica.md
+    - IA Generativa: conceitos/ia-generativa.md
+    - IIIF: conceitos/iiif.md
+    - Inferência: conceitos/inferencia.md
+    - Inteligência Artificial: conceitos/inteligencia-artificial.md
+    - Interoperabilidade: conceitos/interoperabilidade.md
+    - Janela de Contexto: conceitos/janela-de-contexto.md
+    - JSON: conceitos/json.md
+    - LGPD: conceitos/lgpd.md
+    - MCP: conceitos/mcp.md
+    - Metadados: conceitos/metadados.md
+    - Modelo: conceitos/modelo.md
+    - Modelo Aberto: conceitos/modelo-aberto.md
+    - Modelo de Linguagem: conceitos/modelo-de-linguagem.md
+    - Modelo de Linguagem Grande: conceitos/modelo-de-linguagem-grande.md
+    - Modelo Fundamental: conceitos/modelo-fundamental.md
+    - Multimodalidade: conceitos/multimodalidade.md
+    - Pesos Abertos: conceitos/pesos-abertos.md
+    - Preservação Digital: conceitos/preservacao-digital.md
+    - Pré-treinamento: conceitos/pre-treinamento.md
+    - Processamento de Linguagem Natural: conceitos/processamento-de-linguagem-natural.md
+    - Prompt: conceitos/prompt.md
+    - Prompt de Sistema: conceitos/prompt-de-sistema.md
+    - Proveniência de Conteúdo: conceitos/proveniencia-de-conteudo.md
+    - Pseudonimização: conceitos/pseudonimizacao.md
+    - Racismo Algorítmico: conceitos/racismo-algoritmico.md
+    - RAG: conceitos/rag.md
+    - RDF: conceitos/rdf.md
+    - Reconhecimento Automático de Fala: conceitos/reconhecimento-automatico-de-fala.md
+    - Reconhecimento de Entidades Nomeadas: conceitos/reconhecimento-de-entidades-nomeadas.md
+    - Reconhecimento de Texto Manuscrito: conceitos/reconhecimento-de-texto-manuscrito.md
+    - Reconhecimento Óptico de Caracteres: conceitos/reconhecimento-optico-de-caracteres.md
+    - Rede Neural Artificial: conceitos/rede-neural-artificial.md
+    - Repositório Digital: conceitos/repositorio-digital.md
+    - Representação Vetorial: conceitos/representacao-vetorial.md
+    - Software Livre: conceitos/software-livre.md
+    - TEI: conceitos/tei.md
+    - Temperatura: conceitos/temperatura.md
+    - Token: conceitos/token.md
+    - Transformador: conceitos/transformador.md
+    - Treinamento: conceitos/treinamento.md
+    - URI: conceitos/uri.md
+    - Viés Algorítmico: conceitos/vies-algoritmico.md
+    - Viés de Confirmação: conceitos/vies-de-confirmacao.md
+    - Visão Computacional: conceitos/visao-computacional.md
+    - Zero-shot: conceitos/zero-shot.md
+  - Guia de boas práticas:
+    - Visão geral: guia/index.md
+    - 1. Apresentação: guia/apresentacao.md
+    - 2. Fundamentos Conceituais: guia/fundamentos-conceituais.md
+    - 3. Integridade acadêmica: guia/integridade-academica.md
+    - 4. Aplicações e especificidades na pesquisa: guia/aplicacoes-e-especificidades.md
+    - 5. Diretrizes por público: guia/diretrizes-por-publico.md
+    - 6. Perguntas frequentes: guia/perguntas-frequentes.md
+    - 7. Declaração de Uso de IA: guia/declaracao-uso-ia.md
+    - 8. Anexos: guia/anexos.md
+    - 9. Referências: guia/referencias.md
+    - 10. Outros guias, diretrizes e instrumentos normativos: guia/outros-guias-e-instrumentos.md
+  - Contribuir: contribuir.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/lucchesia/iaguia-coc-fiocruz

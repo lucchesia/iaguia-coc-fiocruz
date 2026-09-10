@@ -1,0 +1,37 @@
+# Verificação, e só verificação. Este workflow NÃO publica nada: nenhum passo aqui roda
+# `mkdocs gh-deploy`. Publicar é ato deliberado e vive em .github/workflows/publicar.yml,
+# que só roda quando alguém o dispara à mão.
+#
+# scripts/check_placeholders.sh procura tokens editoriais em docs/ e hoje passa limpo.
+# Ainda não é executado aqui; para ativá-lo, acrescentar o passo
+# `bash scripts/check_placeholders.sh`.
+
+name: Verificação
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Build do site (--strict)
+        run: mkdocs build --strict
+
+      - name: Validar frontmatter dos verbetes
+        run: python scripts/check_frontmatter.py
