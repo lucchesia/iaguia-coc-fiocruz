@@ -32,6 +32,8 @@ As descrições usam linguagem acessível, com exemplos do cotidiano de trabalho
 
 **Por tag.** O [Índice de Tags](tags.md) agrupa as entradas por tema, por exemplo todas as ferramentas de transcrição, ou todas as que são gratuitas e de código aberto.
 
+**Em PDF.** O [Guia de boas práticas em IA](guia/index.md) também pode ser baixado em PDF, pelo botão no alto da página do guia.
+
 **Por busca.** O campo de busca (ícone de lupa) procura por nome de ferramenta, nome de conceito, tipo de tarefa ou qualquer palavra que apareça nas entradas.
 
 ---

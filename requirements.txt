@@ -1,2 +1,5 @@
 mkdocs==1.6.1
 mkdocs-material==9.7.7
+# usado por scripts/generate_facets.py (import yaml); hoje chega
+# por dependência transitiva do mkdocs, mas a dependência é nossa.
+pyyaml==6.0.3

@@ -60,16 +60,16 @@ Dizemos isso porque o próprio guia nasce como desdobramento de um primeiro curs
 
 Ainda assim, consideramos importante compartilhá-lo com vocês desde já, admitindo que haverá imperfeições, seções em que o guia não dará conta de todos os assuntos e um glossário de termos e ferramentas que por vezes se mostrará limitado. Construímos o glossário, justamente, com a intenção de que seja de contínua atualização no ambiente digital. Por isso, na seção **[Contribuir](../contribuir.md)**, a pessoa usuária poderá propor que o glossário do guia inclua um novo verbete, sobre uma ferramenta ou um conceito ainda não contemplados.
 
-> Na prática, os objetivos deste guia são:
+!!! tip "Na prática, os objetivos deste guia são"
 
-- promover o **letramento digital e acadêmico em IA** necessário para compreender criticamente as ferramentas antes de usá-las, em articulação com o Glossário como material de apoio;
+    - promover o **letramento digital e acadêmico em IA** necessário para compreender criticamente as ferramentas antes de usá-las, em articulação com o Glossário como material de apoio;
 
-- orientar a **integridade acadêmica**: autoria e responsabilidade humana, combate ao plágio e centralidade da decisão humana;
+    - orientar a **integridade acadêmica**: autoria e responsabilidade humana, combate ao plágio e centralidade da decisão humana;
 
-- estabelecer parâmetros de **transparência**, sobretudo quanto à declaração de uso e não uso de IA em trabalhos acadêmicos (Portaria CNPq nº 2.664, de 6 de março de 2026; modelo adotado pela COC);
+    - estabelecer parâmetros de **transparência**, sobretudo quanto à declaração de uso e não uso de IA em trabalhos acadêmicos (Portaria CNPq nº 2.664, de 6 de março de 2026; modelo adotado pela COC);
 
-- orientar sobre **usos recomendados e usos vedados** nas diferentes etapas da pesquisa, do ensino e da divulgação científica;
+    - orientar sobre **usos recomendados e usos vedados** nas diferentes etapas da pesquisa, do ensino e da divulgação científica;
 
-- apoiar as **especificidades das áreas de atuação** na COC**,** História das Ciências e da Saúde, Divulgação Científica e Patrimônio da Saúde;
+    - apoiar as **especificidades das áreas de atuação** na COC**,** História das Ciências e da Saúde, Divulgação Científica e Patrimônio da Saúde;
 
-- manter-se um **documento vivo**, aberto a sugestões e à atualização contínua.
+    - manter-se um **documento vivo**, aberto a sugestões e à atualização contínua.

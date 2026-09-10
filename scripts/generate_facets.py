@@ -57,8 +57,12 @@ def _collect(docs_dir, subdir, entry_type):
                 "category": fm.get("category"),
                 "tags": fm.get("tags") or [],
                 "subtype": fm.get("tool_type") or fm.get("concept_type"),
-                "license": fm.get("license"),
-                "cost": fm.get("cost"),
+                # Campos reais do esquema (ver CLAUDE.md, seção 4). "license" e "cost",
+                # que estavam aqui antes, nunca existiram no frontmatter: os dois filtros
+                # correspondentes iam ao ar vazios. software_license não entra porque só
+                # 58 dos 72 verbetes a declaram e os valores são identificadores SPDX.
+                "access_model": fm.get("access_model"),
+                "source_model": fm.get("source_model"),
                 "excerpt": _excerpt(body),
             }
         )

@@ -11,7 +11,11 @@ Orientações sobre o uso responsável de ferramentas de inteligência artificia
 Esta seção é o desdobramento do [Glossário de IA e Ferramentas Digitais](../index.md): onde o glossário descreve *o que são* as ferramentas e os conceitos, o guia trata de *como usá-los* com integridade acadêmica. Sempre que um termo tiver verbete próprio, o guia aponta para ele.
 
 !!! info "Versão preliminar"
-    Esta é a primeira versão do guia, publicada junto com o glossário, que segue em beta. O texto das dez seções está completo e foi revisado pelas autoras. O glossário continua recebendo verbetes, e o guia será atualizado conforme a prática e as normas evoluírem.
+    Esta é a primeira versão do guia, com as dez seções completas, publicada junto com o glossário, que segue em beta. O glossário continua recebendo verbetes, e o guia será atualizado conforme a prática e as normas evoluírem, com expectativa de ao menos uma atualização ao ano.
+
+[Baixar o Guia em PDF](assets/guia-ia-coc-fiocruz.pdf){ .md-button .md-button--primary }
+
+Edição preliminar, 2026 · 71 páginas · PDF, 3,7 MB
 
 ## Seções
 

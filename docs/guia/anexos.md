@@ -6,6 +6,9 @@ title: 8. Anexos
 
 ## 8.1 Termo de Declaração de Uso de IA
 
+[Baixar o Termo em PDF](assets/declaracao-uso-ia-coc.pdf){ .md-button }
+[Baixar as Instruções em PDF](assets/instrucoes-declaracao-uso-ia-coc.pdf){ .md-button }
+
 **DECLARAÇÃO SOBRE O USO OU NÃO USO DE INTELIGÊNCIA ARTIFICIAL EM TRABALHOS ACADÊMICOS NA CASA DE OSWALDO CRUZ/FIOCRUZ**
 
 > Eu, \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_, autor(a) do trabalho intitulado, \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_, apresentado no âmbito do Curso:

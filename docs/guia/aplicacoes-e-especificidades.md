@@ -115,9 +115,9 @@ Essas práticas inauguram debates que não podem ser esgotados aqui, mas cujos p
 
     ☐ Em representações especulativas ou artísticas do passado, explicite a natureza construída da imagem, as fontes e as decisões curatoriais que a orientaram.
 
-☐ Utilize apenas materiais em domínio público, sob licença compatível ou com autorização expressa, e declare o uso de IA de forma visível no texto, na legenda e junto à imagem.
+    ☐ Utilize apenas materiais em domínio público, sob licença compatível ou com autorização expressa, e declare o uso de IA de forma visível no texto, na legenda e junto à imagem.
 
-☐ Mantenha as referências que permitem ao público localizar e verificar o que foi dito.
+    ☐ Mantenha as referências que permitem ao público localizar e verificar o que foi dito.
 
 [^6]: *British Library Book Images* é um conjunto hospedado no *Hugging Face Hub*, com 1.080.814 imagens de livros digitalizados pela British Library em parceria com a Microsoft e reorganizados por Daniel van Strien para a comunidade BigLAM. Disponível em: <https://huggingface.co/datasets/biglam/british-library-book-images>. Acesso em: 2 set. 2026.
 
